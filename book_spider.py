@@ -10,6 +10,9 @@ import requests
 import sys
 import time
 
+"""
+Class definition : download the ebook from the web 'https://www.biquge.cc/'
+"""
 class BookDownloader(object):
     def __init__(self):
         self.target = 'https://www.biquge.cc/html/6/6551/'
@@ -24,7 +27,14 @@ class BookDownloader(object):
         self.names = []
         self.urls = []
         self.numbers = 0
-        
+
+    """
+    Method definition : get download urls from the chapter list page
+    Parameters:
+        None
+    Returns:
+        None
+    """    
     def get_download_urls(self):
         req = requests.get(url = self.target, headers = self.headers)
         html = req.text
@@ -37,21 +47,36 @@ class BookDownloader(object):
         for each in chapter_parts:
             self.names.append(each.string)
             self.urls.append(self.target+each.get('href'))
-        
+
+    """
+    Method definition : get chapter contents from the detail page
+    Parameters:
+        target - detail page url (string)
+    Returns:
+        chapter_contents - chapter contents (string)
+    """    
     def get_chapter_contents(self, target):
         req = requests.get(url = target, headers = self.headers)
         html = req.text
         bf = BeautifulSoup(html, features='lxml')
         chapter_contents = bf.find('div', id = 'content').text.replace(\
-                                  '\xa0'*4, '\n\n')
+                                  '\xa0'*4, '\n')
         return chapter_contents
     
+    """
+    Method definition : write the chapter name and contents to a file
+    Parameters:
+        name - chapter name (string)
+        path - file path to write (string)
+        text - chapter contents (string)
+    Returns:
+        None
+    """
     def write(self, name, path, text):
         with open(path, 'a', encoding = 'utf-8') as f:
             f.write(name + '\n')
             f.writelines(text)
             f.write('\n\n')
-
 
 if __name__ == '__main__':
     downloader = BookDownloader()
