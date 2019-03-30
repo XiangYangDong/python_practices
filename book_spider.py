@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 from sys import stdout
 import requests
 import sys
-import time
 
 """
 Class definition : download the ebook from the web 'https://www.biquge.cc/'
