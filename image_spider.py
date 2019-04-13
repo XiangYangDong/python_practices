@@ -49,7 +49,7 @@ class UnsplashDownloader(object):
                 time.sleep(random.uniform(0,3))
 
                 try:
-                    print('donwloading {}th image...'.format(i))
+                    print('downloading {}th image...'.format(i))
 
                     image_file = requests.get(self.image_url_template.format(id), headers = self.headers)
                     image_file_path = os.path.join(category_image_folder, id + '.jpg')
