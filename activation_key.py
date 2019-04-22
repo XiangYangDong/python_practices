@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 """
+https://github.com/Yixiaohan/show-me-the-code
 第 0001 题： 作为 App 独立开发者，你要搞限时促销，为你的应用生成10位包含随机数字或字母的激活码，如何生成 5 个激活码（或者优惠券）？
 """
 
