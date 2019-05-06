@@ -42,3 +42,10 @@ if __name__ == '__main__':
     rows = database.query("SELECT id, name, subjects FROM public.student")
     for row in rows:
         print('ID = {0}, Name = {1}, Subjects = {2}'.format(row[0], row[1], row[2]))
+
+    database.execute_non_query("DELETE FROM public.student WHERE id = 5;")
+
+    database.execute_non_query("INSERT INTO public.student(id, name, subjects) \
+	                                VALUES (5, 'ddd', 'Math');")
+
+    database.execute_non_query("UPDATE public.student SET name = 'xxx' WHERE id = 5;")
